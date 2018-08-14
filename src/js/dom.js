@@ -29,6 +29,10 @@ const deCloak = function() {
   }});
 }
 
+const showInfoScreen = function(){
+  mainContainer.addClass('info-screen');  
+}
+
 $('document').ready(function(){
   vidContainer = $('.video-container');
   iframe = document.querySelector('iframe');
@@ -58,7 +62,6 @@ $('document').ready(function(){
   });
   $('.info-button').click(function(e){
     e.preventDefault();
-    mainContainer.addClass('info-screen');
   });
   $('.close-info').click(function(e){
     e.preventDefault();
@@ -72,4 +75,4 @@ $(document).keyup(function(e) {
  }
 });
 
-export {hideVideo, launchVideo, deCloak};
+export {hideVideo, launchVideo, deCloak, showInfoScreen};

@@ -1,6 +1,6 @@
 
 import app from './app.js';
-import {map} from './helpers.js';
+import {map,debounce, backgroundSize} from './helpers.js';
 
 export default (config) => {
 
@@ -17,8 +17,8 @@ export default (config) => {
   config.displacedElement.filters = [displacementFilter];
   // displacementFilter.scale.x = 100;
   // displacementFilter.scale.y = 100;
-  displacementSprite.anchor.set(0.5);
-  displacementSprite.position.set(app.renderer.width / 2, app.renderer.height / 2);
+  // displacementSprite.anchor.set(0.5);
+  // displacementSprite.position.set(app.renderer.width / 2, app.renderer.height / 2);
 
 
   
@@ -42,6 +42,18 @@ export default (config) => {
 			}); 
   }  
 
+  function resize(){
+    const bgSize = backgroundSize(app.renderer.width, app.renderer.height, config.texture.orig.width, config.texture.orig.height);
+    displacementSprite.scale.set(bgSize.scale);
+    displacementSprite.anchor.set(0.5);
+    displacementSprite.x = app.renderer.width / 2;
+    displacementSprite.y = app.renderer.height / 2;
+  }
+  resize();
+
+  window.addEventListener("resize",debounce(function(e){
+    resize();
+  }));  
 
 
 }
