@@ -259,4 +259,20 @@ a {
   overflow: hidden;
   z-index: 10000000;
   background: black;
+  padding: 10%;
+}
+/* line 106, ../../src/_sass/main.sass */
+.cloak .bg {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  background-image: url(../img/cm-logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0.08;
 }
