@@ -3,18 +3,29 @@ import {debounce, getWindowSize, map} from './helpers.js';
 
 
 const theLogo = function(){
-  const backgroundContainer = new PIXI.Sprite();
-  const backgroundSprite = new PIXI.Sprite.fromImage('img/sg-worms.jpg');
+  const backgroundContainer = new PIXI.Container();
+  const backgroundSprite = new PIXI.Sprite.fromImage('img/fade.jpg');
   backgroundContainer.addChild(backgroundSprite);
+  //backgroundSprite.anchor.set(0.5);
+  // backgroundSprite.x = app.renderer.width / 2;
+  //backgroundSprite.y = app.renderer.height / 5;
+
 
   const logoSprite = new PIXI.Sprite.fromImage('img/Treef_logo-white.png');
   logoSprite.anchor.set(0.5);
   backgroundContainer.addChild(logoSprite);
+  logoSprite.scale.set(0.5);
 
+  logoSprite.x = 0;
+  logoSprite.y = 0;
+
+  setTimeout(() => {
+    logoSprite.x = backgroundSprite.width / 2;
+    logoSprite.y = backgroundSprite.height / 2;    
+  }, 300);
   backgroundSprite.mask = logoSprite;
 
-  logoSprite.x = app.renderer.width / 2;
-  logoSprite.y = app.renderer.height / 5;
+
 
   logoSprite.interactive = true;
   
@@ -30,9 +41,8 @@ const theLogo = function(){
       var moverX = map(mx, 0, app.renderer.width, 80, -80);
       var moverY = map(my, 0, app.renderer.height, 40, -40);
       TweenMax.to(logoSprite, 2, {
-				x:(app.renderer.width/2) + moverX,
-        y:(app.renderer.height/5) + moverY,
-	
+				x:(backgroundSprite.width/2) + moverX,
+        y:(backgroundSprite.height/2) + moverY,	
 			})
 
   }  

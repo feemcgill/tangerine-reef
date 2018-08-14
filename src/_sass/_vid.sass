@@ -1,0 +1,26 @@
+.video-container
+  position: absolute
+  +bigFull
+  //display: none
+  z-index: 1000
+  .video-bg
+    position: absolute
+    +bigFull    
+    transition: background-color 1s ease-out
+    background-color: transparent
+  &.playing
+    .video-bg
+      background-color: black
+  .video-close
+    z-index: 200
+    color: #999999
+    opacity: 0.0
+    transition: all .2s ease-in    
+    &:hover
+      opacity: 1
+      color: white
+  iframe
+    height: 100vh
+    width: 100vw
+    position: relative
+    z-index: 100

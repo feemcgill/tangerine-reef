@@ -1,104 +1,58 @@
 @keyframes ticker {
   0% {
-    transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 65%, 0);
     visibility: visible;
   }
   100% {
     transform: translate3d(0, -100%, 0);
   }
 }
-/* line 20, ../../src/_sass/main.sass */
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: "Oswald", sans-serif;
+/* line 10, ../../src/_sass/_info.sass */
+.tangerine-info {
+  max-width: 800px;
+  height: calc(100vh);
+  padding: 50px;
+  font-size: 32px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+/* line 20, ../../src/_sass/_info.sass */
+.tangerine-info .info-scroll {
+  display: inline-block;
 }
 
-/* line 24, ../../src/_sass/main.sass */
-body {
-  background: black;
-  background-image: url("../img/sg-worms-dark.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  color: white;
-  height: 100vh;
-  width: 100vw;
+/* line 29, ../../src/_sass/_info.sass */
+.main-container.info-screen .tangerine-info .info-scroll {
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: ticker;
+  animation-duration: 40s;
 }
-/* line 33, ../../src/_sass/main.sass */
-body canvas {
+
+/* line 35, ../../src/_sass/_info.sass */
+.album-info {
+  position: absolute;
+  bottom: 50%;
+  right: 20px;
+  z-index: 1000;
+  cursor: pointer;
+  display: none;
+}
+/* line 42, ../../src/_sass/_info.sass */
+.album-info .album-link {
+  width: 200px;
+  text-align: center;
   display: block;
-  margin: 0;
-  padding: 0;
+  mix-blend-mode: multiply;
+}
+/* line 48, ../../src/_sass/_info.sass */
+.album-info .album-link img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-/* line 37, ../../src/_sass/main.sass */
-a {
-  text-decoration: none;
-  color: white;
-}
-
-/* line 41, ../../src/_sass/main.sass */
-.main-container {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  perspective: 1000;
-  transform-style: preserve-3d;
-  transition: all 0.3s ease-out;
-  transform: rotateY(0);
-}
-/* line 48, ../../src/_sass/main.sass */
-.main-container.info-screen {
-  transform: rotateY(180deg);
-}
-
-/* line 51, ../../src/_sass/main.sass */
-.front {
-  position: absolute;
-  backface-visibility: hidden;
-  transform: rotateY(0deg);
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  width: 100vw;
-}
-
-/* line 61, ../../src/_sass/main.sass */
-#canvas {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-}
-
-/* line 65, ../../src/_sass/main.sass */
-.back {
-  background-image: url("../img/info-screen.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  position: absolute;
-  backface-visibility: hidden;
-  transform: rotateY(180deg);
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  width: 100vw;
-}
-
-/* line 76, ../../src/_sass/main.sass */
+/* line 1, ../../src/_sass/_vid.sass */
 .video-container {
   position: absolute;
   top: 0;
@@ -109,7 +63,7 @@ a {
   width: 100vw;
   z-index: 1000;
 }
-/* line 81, ../../src/_sass/main.sass */
+/* line 6, ../../src/_sass/_vid.sass */
 .video-container .video-bg {
   position: absolute;
   top: 0;
@@ -118,18 +72,26 @@ a {
   right: 0;
   height: 100vh;
   width: 100vw;
-  transition: background-color 2s ease-in;
+  transition: background-color 1s ease-out;
   background-color: transparent;
 }
-/* line 87, ../../src/_sass/main.sass */
+/* line 12, ../../src/_sass/_vid.sass */
 .video-container.playing .video-bg {
   background-color: black;
 }
-/* line 89, ../../src/_sass/main.sass */
+/* line 14, ../../src/_sass/_vid.sass */
 .video-container .video-close {
   z-index: 200;
+  color: #999999;
+  opacity: 0;
+  transition: all 0.2s ease-in;
 }
-/* line 91, ../../src/_sass/main.sass */
+/* line 19, ../../src/_sass/_vid.sass */
+.video-container .video-close:hover {
+  opacity: 1;
+  color: white;
+}
+/* line 22, ../../src/_sass/_vid.sass */
 .video-container iframe {
   height: 100vh;
   width: 100vw;
@@ -137,7 +99,116 @@ a {
   z-index: 100;
 }
 
-/* line 97, ../../src/_sass/main.sass */
+/* line 7, ../../src/_sass/main.sass */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Oswald", sans-serif;
+}
+
+/* line 11, ../../src/_sass/main.sass */
+body {
+  background: black;
+  background-image: url("../img/sg-worms-dark.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  color: white;
+  height: 100vh;
+  width: 100vw;
+}
+/* line 20, ../../src/_sass/main.sass */
+body canvas {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 24, ../../src/_sass/main.sass */
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* line 28, ../../src/_sass/main.sass */
+.main-container {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  perspective: 1000;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: all 0.3s ease-out;
+  transform: rotateY(0);
+}
+/* line 36, ../../src/_sass/main.sass */
+.main-container.info-screen {
+  transform: rotateY(180deg);
+}
+/* line 38, ../../src/_sass/main.sass */
+.main-container.info-screen .front {
+  z-index: 10;
+  pointer-events: none;
+}
+/* line 41, ../../src/_sass/main.sass */
+.main-container.info-screen .back {
+  z-index: 100;
+  pointer-events: auto;
+}
+
+/* line 45, ../../src/_sass/main.sass */
+.front {
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(0deg);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+/* line 54, ../../src/_sass/main.sass */
+#canvas {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: -1;
+}
+
+/* line 59, ../../src/_sass/main.sass */
+.back {
+  background-image: url("../img/info-screen.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(180deg);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* line 72, ../../src/_sass/main.sass */
 .play-button {
   position: absolute;
   z-index: 10;
@@ -146,8 +217,9 @@ a {
   top: calc(50% - 100px);
   text-align: center;
   padding-top: 110px;
+  display: none;
 }
-/* line 105, ../../src/_sass/main.sass */
+/* line 81, ../../src/_sass/main.sass */
 .play-button:before {
   content: "";
   border: 50px solid transparent;
@@ -157,31 +229,14 @@ a {
   left: 60px;
 }
 
-/* line 113, ../../src/_sass/main.sass */
+/* line 89, ../../src/_sass/main.sass */
 .video-close,
 .close-info,
 .info-button {
+  font-size: 32px;
   text-transform: uppercase;
   position: absolute;
   z-index: 10;
   top: 20px;
   right: 20px;
-}
-
-/* line 123, ../../src/_sass/main.sass */
-.tangerine-info {
-  max-width: 800px;
-  height: calc(100vh);
-  padding: 50px;
-  padding-right: 100px;
-  font-size: 32px;
-  overflow: hidden;
-}
-/* line 132, ../../src/_sass/main.sass */
-.tangerine-info .info-scroll {
-  display: inline-block;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-name: ticker;
-  animation-duration: 40s;
 }

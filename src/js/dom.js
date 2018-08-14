@@ -1,32 +1,37 @@
-$('document').ready(function(){
-  const vidContainer = $('.video-container');
-  const iframe = document.querySelector('iframe');
-  const player = new Vimeo.Player(iframe);
-  const mainContainer = $('.main-container');
+let vidContainer;
+let iframe;
+let player;
+let mainContainer;
 
-  function hideVideo() {
-    vidContainer.hide();
-    TweenMax.set(iframe, {scale: 0});
-    vidContainer.removeClass('playing');
-    player.pause();
-  }
+
+const hideVideo = function() {
+  vidContainer.hide();
+  TweenMax.set(iframe, {scale: 0});
+  vidContainer.removeClass('playing');
+  player.pause();
+}
+
+const launchVideo = function() {
+  vidContainer.show();
+  setTimeout(function(){
+    vidContainer.addClass('playing');
+  },100)
+  TweenMax.to(iframe, 4, {scale: 1,
+    onComplete: function() {
+    }
+  });
+  player.play();
+}
+
+$('document').ready(function(){
+  vidContainer = $('.video-container');
+  iframe = document.querySelector('iframe');
+  player = new Vimeo.Player(iframe);
+  mainContainer = $('.main-container');
+
 
 
   hideVideo();
-
-
-
-  function launchVideo() {
-    vidContainer.show();
-    setTimeout(function(){
-      vidContainer.addClass('playing');
-    },100)
-    TweenMax.to(iframe, 4, {scale: 1,
-      onComplete: function() {
-      }
-    });
-    player.play();
-  }
 
   // player.on('pause', function() {
   //   hideVideo();
@@ -54,3 +59,11 @@ $('document').ready(function(){
     mainContainer.removeClass('info-screen');
   });  
 });
+
+$(document).keyup(function(e) {
+  if (e.keyCode == 27) { // escape key maps to keycode `27`
+     hideVideo();
+ }
+});
+
+export {hideVideo, launchVideo};

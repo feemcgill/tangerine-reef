@@ -1,21 +1,8 @@
 @import mixins
+@import info
+@import vid
 
 
-@keyframes ticker
-  0%
-    transform: translate3d(0, 100%, 0)
-    visibility: visible
-  100%
-    transform: translate3d(0, -100%, 0)
-
-
-=bigFull
-  top: 0
-  bottom: 0
-  left: 0
-  right: 0
-  height: 100vh
-  width: 100vw
 
 body, html
   margin: 0
@@ -43,24 +30,31 @@ a
   position: fixed
   perspective: 1000
   transform-style: preserve-3d
+  -webkit-transform-style: preserve-3d
   transition: all .3s ease-out
   transform: rotateY(0)
   &.info-screen
     transform: rotateY(180deg)
+    .front
+      z-index: 10
+      pointer-events: none
+    .back
+      z-index: 100
+      pointer-events: auto
       
 .front
-  // background-image: url('../img/ACTD-bg.jpg')
-  // background-repeat: no-repeat
-  // background-position: center center
-  // background-size: cover
   position: absolute
   backface-visibility: hidden
+  -webkit-backface-visibility: hidden
   transform: rotateY(0deg)
   +bigFull
+  z-index: 100
+  pointer-events: auto
 
 #canvas
   +bigFull
   position: absolute
+  z-index: -1
 
 .back
   background-image: url('../img/info-screen.jpg')
@@ -69,30 +63,11 @@ a
   background-size: cover
   position: absolute
   backface-visibility: hidden
+  -webkit-backface-visibility: hidden
   transform: rotateY(180deg)
   +bigFull
-
-
-.video-container
-  position: absolute
-  +bigFull
-  //display: none
-  z-index: 1000
-  .video-bg
-    position: absolute
-    +bigFull    
-    transition: background-color 2s ease-in
-    background-color: transparent
-  &.playing
-    .video-bg
-      background-color: black
-  .video-close
-    z-index: 200
-  iframe
-    height: 100vh
-    width: 100vw
-    position: relative
-    z-index: 100
+  z-index: 10
+  pointer-events: none
 
 .play-button
   position: absolute
@@ -102,6 +77,7 @@ a
   top: calc(50% - 100px)
   text-align: center
   padding-top: 110px
+  display: none
   &:before
     content: ''
     border: 50px solid transparent
@@ -113,29 +89,10 @@ a
 .video-close,
 .close-info,
 .info-button
+  font-size: 32px
   text-transform: uppercase
   position: absolute
   z-index: 10
   top: 20px
   right: 20px
 
-
-.tangerine-info
-  max-width: 800px
-  height: calc(100vh)
-  padding: 50px
-  padding-right: 100px
-  font-size: 32px
-  overflow: hidden
-  //padding-top: 80%
-
-  .info-scroll
-    display: inline-block
-    //white-space: nowrap
-    //padding-right: 100%
-    //box-sizing: content-box
-
-    animation-iteration-count: infinite
-    animation-timing-function: linear
-    animation-name: ticker
-    animation-duration: 40s
