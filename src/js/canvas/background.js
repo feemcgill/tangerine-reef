@@ -3,7 +3,7 @@ import {debounce, getWindowSize, backgroundSize} from './helpers.js';
 
 const theBackground = function(){
   const backgroundContainer = new PIXI.Sprite();
-  const backgroundTexture = PIXI.Texture.fromImage('img/ACTD-bg.jpg')
+  const backgroundTexture = PIXI.Texture.fromImage('img/ACTR-bg.jpg')
   const backgroundSprite = new PIXI.Sprite(backgroundTexture);
   backgroundContainer.addChild(backgroundSprite);
 

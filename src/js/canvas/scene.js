@@ -12,7 +12,7 @@ const loader = new PIXI.loaders.Loader(); // you can also create your own if you
 
 
 // Chainable `add` to enqueue a resource
-loader.add('bg', 'img/ACTD-bg.jpg')
+loader.add('bg', 'img/ACTR-bg.jpg')
   .add('displacer', 'img/sg-worms-bg.jpg')
   .add('logo', 'img/Treef_logo-white.png')
   .add('logo_bg', 'img/fade.jpg')
