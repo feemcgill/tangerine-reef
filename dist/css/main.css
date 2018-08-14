@@ -240,3 +240,17 @@ a {
   top: 20px;
   right: 20px;
 }
+
+/* line 99, ../../src/_sass/main.sass */
+.cloak {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  overflow: hidden;
+  z-index: 10000000;
+  background: black;
+}

@@ -23,6 +23,12 @@ const launchVideo = function() {
   player.play();
 }
 
+const deCloak = function() {
+  TweenMax.to($('.cloak'), 1.2, {alpha: 0, onComplete: function(){
+    $('.cloak').remove();
+  }});
+}
+
 $('document').ready(function(){
   vidContainer = $('.video-container');
   iframe = document.querySelector('iframe');
@@ -66,4 +72,4 @@ $(document).keyup(function(e) {
  }
 });
 
-export {hideVideo, launchVideo};
+export {hideVideo, launchVideo, deCloak};

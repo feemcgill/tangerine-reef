@@ -1,1 +1,197 @@
-!function(e){var t={};function n(r){if(t[r])return t[r].exports;var i=t[r]={i:r,l:!1,exports:{}};return e[r].call(i.exports,i,i.exports,n),i.l=!0,i.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var i in e)n.d(r,i,function(t){return e[t]}.bind(null,i));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=3)}([function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});t.shuffleArray=function(e){for(var t,n,r=e.length;0!==r;)n=Math.floor(Math.random()*r),t=e[r-=1],e[r]=e[n],e[n]=t;return e},t.getWindowSize=function(){return{width:window.innerWidth,height:window.innerHeight}},t.debounce=function(e){var t;return function(n){t&&clearTimeout(t),t=setTimeout(e,100,n)}},t.map=function(e,t,n,r,i){return(e-t)*(i-r)/(n-t)+r},t.boxRatio=function(e,t){return e/t},t.backgroundSize=function(e,t,n,r){var i={w:null,h:null,scale:null},a=n/r;return e/a<t?(i.h=t,i.w=t*a):(i.w=e,i.h=e/a),i.scale=i.w/n,i}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=new PIXI.Application({width:window.innerWidth,height:window.innerHeight,backgroundColor:0});document.getElementById("canvas").appendChild(r.view),t.default=r},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=void 0,i=void 0,a=void 0,o=void 0,d=function(){r.hide(),TweenMax.set(i,{scale:0}),r.removeClass("playing"),a.pause()},u=function(){r.show(),setTimeout(function(){r.addClass("playing")},100),TweenMax.to(i,4,{scale:1,onComplete:function(){}}),a.play()};$("document").ready(function(){r=$(".video-container"),i=document.querySelector("iframe"),a=new Vimeo.Player(i),o=$(".main-container"),d(),a.on("ended",function(){d()}),$(".play-button").click(function(e){e.preventDefault(),u()}),$(".video-close").click(function(e){e.preventDefault(),d()}),$(".info-button").click(function(e){e.preventDefault(),o.addClass("info-screen")}),$(".close-info").click(function(e){e.preventDefault(),o.removeClass("info-screen")})}),$(document).keyup(function(e){27==e.keyCode&&d()}),t.hideVideo=d,t.launchVideo=u},function(e,t,n){"use strict";n(2),n(4)},function(e,t,n){"use strict";var r=n(0),i=l(n(1)),a=l(n(5)),o=l(n(6)),d=l(n(7)),u=l(n(8));function l(e){return e&&e.__esModule?e:{default:e}}var c=new PIXI.Container;i.default.stage.addChild(c);var f=(0,a.default)();c.addChild(f);var s=(0,u.default)();c.addChild(s),s.anchor.set(.5);var h=(0,o.default)();c.addChild(h),i.default.ticker.add(function(){});var v=PIXI.Texture.fromImage("img/sg-worms-bg.jpg");(0,d.default)({texture:v,displacedElement:f,container:i.default.stage}),window.addEventListener("resize",function(e){!function(){var e=(0,r.getWindowSize)(),t=e.width,n=e.height;i.default.renderer.view.style.width=t+"px",i.default.renderer.view.style.height=n+"px",i.default.renderer.resize(t,n)}()})},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=function(e){return e&&e.__esModule?e:{default:e}}(n(1)),i=n(0);t.default=function(){var e=new PIXI.Sprite,t=PIXI.Texture.fromImage("img/ACTD-bg.jpg"),n=new PIXI.Sprite(t);function a(){var e=(0,i.backgroundSize)(r.default.renderer.width,r.default.renderer.height,t.orig.width,t.orig.height);n.scale.set(e.scale),n.anchor.set(.5),n.x=r.default.renderer.width/2,n.y=r.default.renderer.height/2}return e.addChild(n),setTimeout(function(){a()},300),window.addEventListener("resize",(0,i.debounce)(function(e){a()})),e}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=function(e){return e&&e.__esModule?e:{default:e}}(n(1)),i=n(0);t.default=function(){var e=new PIXI.Container,t=new PIXI.Sprite.fromImage("img/fade.jpg");e.addChild(t);var n=new PIXI.Sprite.fromImage("img/Treef_logo-white.png");function a(e){var a=e.data.originalEvent.clientX,o=e.data.originalEvent.clientY,d=(0,i.map)(a,0,r.default.renderer.width,80,-80),u=(0,i.map)(o,0,r.default.renderer.height,40,-40);TweenMax.to(n,2,{x:t.width/2+d,y:t.height/2+u})}return n.anchor.set(.5),e.addChild(n),n.scale.set(.5),n.x=0,n.y=0,setTimeout(function(){n.x=t.width/2,n.y=t.height/2},300),t.mask=n,n.interactive=!0,n.on("mousemove",a).on("touchmove",a),window.addEventListener("resize",(0,i.debounce)(function(e){})),e}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=function(e){return e&&e.__esModule?e:{default:e}}(n(1)),i=n(0);t.default=function(e){var t=new PIXI.Sprite(e.texture),n=new PIXI.filters.DisplacementFilter(t);function a(e){var n=e.data.originalEvent.clientX,a=e.data.originalEvent.clientY,o=(0,i.map)(n,0,r.default.renderer.width,20,-20),d=(0,i.map)(a,0,r.default.renderer.height,20,-20);TweenMax.to(t,2,{x:r.default.renderer.width/2+o,y:r.default.renderer.height/2+d})}e.container.addChild(t),t.alpha=.1,e.displacedElement.filters=[n],t.anchor.set(.5),t.position.set(r.default.renderer.width/2,r.default.renderer.height/2),e.container.interactive=!0,e.container.on("mousemove",a).on("touchmove",a)}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=function(e){return e&&e.__esModule?e:{default:e}}(n(1)),i=n(0),a=n(2);t.default=function(){var e=new PIXI.Sprite,t=new PIXI.Container;e.addChild(t);var n=void 0;function o(){(n=new PIXI.Graphics).beginFill(0),n.drawRect(0,0,r.default.renderer.width,r.default.renderer.height),n.endFill(),n.alpha=0,t.addChild(n)}o();var d=new PIXI.Sprite;e.addChild(d);var u=new PIXI.Sprite.fromImage("img/play3-shadow.png");d.addChild(u),u.anchor.set(.5),u.scale.set(.7);var l=new PIXI.Sprite.fromImage("img/play3.png");d.addChild(l),l.anchor.set(.5),l.scale.set(.7);var c=new PIXI.Sprite.fromImage("img/creature.jpg");function f(e){var t=e.data.originalEvent.clientX,n=e.data.originalEvent.clientY,a=(0,i.map)(t,0,r.default.renderer.width,56,-56),o=(0,i.map)(n,0,r.default.renderer.height,56,-56),u=(0,i.map)(t,0,r.default.renderer.width,-32,32),l=(0,i.map)(n,0,r.default.renderer.height,-32,32);TweenMax.to(c,2,{x:r.default.renderer.width/2+a,y:r.default.renderer.height/2+o}),TweenMax.to(d,2,{x:r.default.renderer.width/2+u,y:r.default.renderer.height/2+l})}function s(){n&&n.destroy(),o(),c.x=r.default.renderer.width/2,c.y=r.default.renderer.height/2,d.x=r.default.renderer.width/2,d.y=r.default.renderer.height/2}return e.addChild(c),c.anchor.set(.5),c.scale.set(.8),c.mask=l,l.interactive=!0,l.buttonMode=!0,l.on("mousemove",f).on("touchmove",f).on("mouseover",function(){TweenMax.to(l.scale,5,{x:.9,y:.9}),TweenMax.to(n,5,{alpha:1})}).on("mouseout",function(){TweenMax.to(l.scale,1,{x:.7,y:.7}),TweenMax.to(n,5,{alpha:0})}).on("click",a.launchVideo),setTimeout(function(){s()},300),window.addEventListener("resize",(0,i.debounce)(function(e){s()})),e}}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\n__webpack_require__(/*! ./js/dom.js */ \"./src/js/dom.js\");\n\n__webpack_require__(/*! ./js/canvas/scene.js */ \"./src/js/canvas/scene.js\");\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/js/canvas/app.js":
+/*!******************************!*\
+  !*** ./src/js/canvas/app.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar app = new PIXI.Application({\n  width: window.innerWidth,\n  height: window.innerHeight,\n  backgroundColor: 0x000000\n  // forceCanvas : true\n});\n\ndocument.getElementById(\"canvas\").appendChild(app.view);\n\nexports.default = app;\n\n//# sourceURL=webpack:///./src/js/canvas/app.js?");
+
+/***/ }),
+
+/***/ "./src/js/canvas/background.js":
+/*!*************************************!*\
+  !*** ./src/js/canvas/background.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _app = __webpack_require__(/*! ./app.js */ \"./src/js/canvas/app.js\");\n\nvar _app2 = _interopRequireDefault(_app);\n\nvar _helpers = __webpack_require__(/*! ./helpers.js */ \"./src/js/canvas/helpers.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar theBackground = function theBackground() {\n  var backgroundContainer = new PIXI.Sprite();\n  var backgroundTexture = PIXI.Texture.fromImage('img/ACTD-bg.jpg');\n  var backgroundSprite = new PIXI.Sprite(backgroundTexture);\n  backgroundContainer.addChild(backgroundSprite);\n\n  // RESIZE\n  function reSizeIt() {\n    var bgSize = (0, _helpers.backgroundSize)(_app2.default.renderer.width, _app2.default.renderer.height, backgroundTexture.orig.width, backgroundTexture.orig.height);\n    backgroundSprite.scale.set(bgSize.scale);\n    backgroundSprite.anchor.set(0.5);\n    backgroundSprite.x = _app2.default.renderer.width / 2;\n    backgroundSprite.y = _app2.default.renderer.height / 2;\n  }\n\n  setTimeout(function () {\n    reSizeIt();\n  }, 300);\n\n  window.addEventListener(\"resize\", (0, _helpers.debounce)(function (e) {\n    reSizeIt();\n  }));\n\n  return backgroundContainer;\n};\n\nexports.default = theBackground;\n\n//# sourceURL=webpack:///./src/js/canvas/background.js?");
+
+/***/ }),
+
+/***/ "./src/js/canvas/displace.js":
+/*!***********************************!*\
+  !*** ./src/js/canvas/displace.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _app = __webpack_require__(/*! ./app.js */ \"./src/js/canvas/app.js\");\n\nvar _app2 = _interopRequireDefault(_app);\n\nvar _helpers = __webpack_require__(/*! ./helpers.js */ \"./src/js/canvas/helpers.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nexports.default = function (config) {\n\n    var displacementSprite = new PIXI.Sprite(config.texture);\n\n    //displacementSprite.scale.set(0.2);\n    var displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);\n\n    config.container.addChild(displacementSprite);\n    displacementSprite.alpha = 0.1;\n\n    config.displacedElement.filters = [displacementFilter];\n    // displacementFilter.scale.x = 100;\n    // displacementFilter.scale.y = 100;\n    displacementSprite.anchor.set(0.5);\n    displacementSprite.position.set(_app2.default.renderer.width / 2, _app2.default.renderer.height / 2);\n\n    config.container.interactive = true;\n\n    config.container.on('mousemove', onPointerMove).on('touchmove', onPointerMove);\n\n    function onPointerMove(eventData) {\n        //displacementSprite.position.set(eventData.data.global.x - 25, eventData.data.global.y);\n        var mx = eventData.data.originalEvent.clientX;\n        var my = eventData.data.originalEvent.clientY;\n\n        var moverX = (0, _helpers.map)(mx, 0, _app2.default.renderer.width, 20, -20);\n        var moverY = (0, _helpers.map)(my, 0, _app2.default.renderer.height, 20, -20);\n\n        TweenMax.to(displacementSprite, 2, {\n            x: _app2.default.renderer.width / 2 + moverX,\n            y: _app2.default.renderer.height / 2 + moverY\n        });\n    }\n};\n\n//# sourceURL=webpack:///./src/js/canvas/displace.js?");
+
+/***/ }),
+
+/***/ "./src/js/canvas/helpers.js":
+/*!**********************************!*\
+  !*** ./src/js/canvas/helpers.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar shuffleArray = function shuffleArray(array) {\n    var currentIndex = array.length,\n        temporaryValue,\n        randomIndex;\n\n    while (0 !== currentIndex) {\n\n        randomIndex = Math.floor(Math.random() * currentIndex);\n        currentIndex -= 1;\n\n        temporaryValue = array[currentIndex];\n        array[currentIndex] = array[randomIndex];\n        array[randomIndex] = temporaryValue;\n    }\n\n    return array;\n};\n\nfunction getWindowSize() {\n    var wWidth = window.innerWidth;\n    var wHeight = window.innerHeight;\n    var data = {\n        width: wWidth,\n        height: wHeight\n    };\n    return data;\n}\n\nvar debounce = function debounce(func) {\n    var timer;\n    return function (event) {\n        if (timer) clearTimeout(timer);\n        timer = setTimeout(func, 100, event);\n    };\n};\n\nvar map = function map(the_numb, in_min, in_max, out_min, out_max) {\n    return (the_numb - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;\n};\n\nvar boxRatio = function boxRatio(w, h) {\n    return w / h;\n};\n\nvar backgroundSize = function backgroundSize(containerW, containerH, imgW, imgH) {\n    var newDims = {\n        w: null,\n        h: null,\n        scale: null\n    };\n    var imgRatio = imgW / imgH;\n    if (containerW / imgRatio < containerH) {\n        // Image is 100% wide and shorter than container\n        // new dims must be contaier heigh\n        newDims.h = containerH;\n        newDims.w = containerH * imgRatio;\n    } else {\n        // Image is 100% wide and taller than container\n        newDims.w = containerW;\n        newDims.h = containerW / imgRatio;\n    }\n    newDims.scale = newDims.w / imgW;\n    return newDims;\n};\n\nexports.shuffleArray = shuffleArray;\nexports.getWindowSize = getWindowSize;\nexports.debounce = debounce;\nexports.map = map;\nexports.boxRatio = boxRatio;\nexports.backgroundSize = backgroundSize;\n\n//# sourceURL=webpack:///./src/js/canvas/helpers.js?");
+
+/***/ }),
+
+/***/ "./src/js/canvas/logo.js":
+/*!*******************************!*\
+  !*** ./src/js/canvas/logo.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _app = __webpack_require__(/*! ./app.js */ \"./src/js/canvas/app.js\");\n\nvar _app2 = _interopRequireDefault(_app);\n\nvar _helpers = __webpack_require__(/*! ./helpers.js */ \"./src/js/canvas/helpers.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar theLogo = function theLogo() {\n  var backgroundContainer = new PIXI.Container();\n  var backgroundSprite = new PIXI.Sprite.fromImage('img/fade.jpg');\n  backgroundContainer.addChild(backgroundSprite);\n  //backgroundSprite.anchor.set(0.5);\n  // backgroundSprite.x = app.renderer.width / 2;\n  //backgroundSprite.y = app.renderer.height / 5;\n\n\n  var logoSprite = new PIXI.Sprite.fromImage('img/Treef_logo-white.png');\n  logoSprite.anchor.set(0.5);\n  backgroundContainer.addChild(logoSprite);\n  logoSprite.scale.set(0.5);\n\n  logoSprite.x = 0;\n  logoSprite.y = 0;\n\n  setTimeout(function () {\n    logoSprite.x = backgroundSprite.width / 2;\n    logoSprite.y = backgroundSprite.height / 2;\n  }, 300);\n  backgroundSprite.mask = logoSprite;\n\n  logoSprite.interactive = true;\n\n  logoSprite.on('mousemove', onPointerMove).on('touchmove', onPointerMove);\n\n  function onPointerMove(eventData) {\n    //logoSprite.position.set(eventData.data.global.x - 25, eventData.data.global.y);\n    var mx = eventData.data.originalEvent.clientX;\n    var my = eventData.data.originalEvent.clientY;\n\n    var moverX = (0, _helpers.map)(mx, 0, _app2.default.renderer.width, 80, -80);\n    var moverY = (0, _helpers.map)(my, 0, _app2.default.renderer.height, 40, -40);\n    TweenMax.to(logoSprite, 2, {\n      x: backgroundSprite.width / 2 + moverX,\n      y: backgroundSprite.height / 2 + moverY\n    });\n  }\n\n  // RESIZE\n  function reSizeIt() {\n    // const size = getWindowSize();\n    // const w = size.width;\n  }\n\n  window.addEventListener(\"resize\", (0, _helpers.debounce)(function (e) {\n    //reSizeIt();\n  }));\n\n  return backgroundContainer;\n};\n\nexports.default = theLogo;\n\n//# sourceURL=webpack:///./src/js/canvas/logo.js?");
+
+/***/ }),
+
+/***/ "./src/js/canvas/playbutton.js":
+/*!*************************************!*\
+  !*** ./src/js/canvas/playbutton.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _app = __webpack_require__(/*! ./app.js */ \"./src/js/canvas/app.js\");\n\nvar _app2 = _interopRequireDefault(_app);\n\nvar _helpers = __webpack_require__(/*! ./helpers.js */ \"./src/js/canvas/helpers.js\");\n\nvar _dom = __webpack_require__(/*! ../dom.js */ \"./src/js/dom.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar thePlayButton = function thePlayButton() {\n\n  var creatureContainer = new PIXI.Sprite();\n  var backgroundContainer = new PIXI.Container();\n  creatureContainer.addChild(backgroundContainer);\n\n  var backgroundGraphics = void 0;\n  function createBackground() {\n    backgroundGraphics = new PIXI.Graphics();\n    backgroundGraphics.beginFill(0x000000);\n    backgroundGraphics.drawRect(0, 0, _app2.default.renderer.width, _app2.default.renderer.height);\n    backgroundGraphics.endFill();\n    backgroundGraphics.alpha = 0;\n    backgroundContainer.addChild(backgroundGraphics);\n  }\n  createBackground();\n\n  var playButtonContainer = new PIXI.Sprite();\n  creatureContainer.addChild(playButtonContainer);\n\n  var playButtonShadow = new PIXI.Sprite.fromImage('img/play3-shadow.png');\n  playButtonContainer.addChild(playButtonShadow);\n  playButtonShadow.anchor.set(0.5);\n  playButtonShadow.scale.set(0.7);\n\n  var playButton = new PIXI.Sprite.fromImage('img/play3.png');\n  playButtonContainer.addChild(playButton);\n  playButton.anchor.set(0.5);\n  playButton.scale.set(0.7);\n\n  var creatureSprite = new PIXI.Sprite.fromImage('img/creature.jpg');\n  creatureContainer.addChild(creatureSprite);\n  creatureSprite.anchor.set(0.5);\n  creatureSprite.scale.set(0.8);\n\n  creatureSprite.mask = playButton;\n\n  playButton.interactive = true;\n  playButton.buttonMode = true;\n  playButton.on('mousemove', onPointerMove).on('touchmove', onPointerMove).on('mouseover', scaleButtonUp).on('mouseout', scaleButtonDown).on('click', _dom.launchVideo);\n\n  function scaleButtonUp() {\n    TweenMax.to(playButton.scale, 5, { x: 0.9, y: 0.9 });\n    TweenMax.to(backgroundGraphics, 5, { alpha: 1 });\n  }\n\n  function scaleButtonDown() {\n    TweenMax.to(playButton.scale, 1, { x: 0.7, y: 0.7 });\n    TweenMax.to(backgroundGraphics, 5, { alpha: 0 });\n  }\n\n  function onPointerMove(eventData) {\n    var mx = eventData.data.originalEvent.clientX;\n    var my = eventData.data.originalEvent.clientY;\n\n    var moverX = (0, _helpers.map)(mx, 0, _app2.default.renderer.width, 56, -56);\n    var moverY = (0, _helpers.map)(my, 0, _app2.default.renderer.height, 56, -56);\n\n    var mover2X = (0, _helpers.map)(mx, 0, _app2.default.renderer.width, -32, 32);\n    var mover2Y = (0, _helpers.map)(my, 0, _app2.default.renderer.height, -32, 32);\n\n    TweenMax.to(creatureSprite, 2, {\n      x: _app2.default.renderer.width / 2 + moverX,\n      y: _app2.default.renderer.height / 2 + moverY\n    });\n\n    TweenMax.to(playButtonContainer, 2, {\n      x: _app2.default.renderer.width / 2 + mover2X,\n      y: _app2.default.renderer.height / 2 + mover2Y\n    });\n  }\n\n  setTimeout(function () {\n    sizeIt();\n  }, 300);\n\n  // RESIZE\n  function sizeIt() {\n    if (backgroundGraphics) {\n      backgroundGraphics.destroy();\n    }\n    createBackground();\n    creatureSprite.x = _app2.default.renderer.width / 2;\n    creatureSprite.y = _app2.default.renderer.height / 2;\n    playButtonContainer.x = _app2.default.renderer.width / 2;\n    playButtonContainer.y = _app2.default.renderer.height / 2;\n  }\n\n  window.addEventListener(\"resize\", (0, _helpers.debounce)(function (e) {\n    sizeIt();\n  }));\n\n  return creatureContainer;\n};\n\nexports.default = thePlayButton;\n\n//# sourceURL=webpack:///./src/js/canvas/playbutton.js?");
+
+/***/ }),
+
+/***/ "./src/js/canvas/scene.js":
+/*!********************************!*\
+  !*** ./src/js/canvas/scene.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _helpers = __webpack_require__(/*! ./helpers.js */ \"./src/js/canvas/helpers.js\");\n\nvar _app = __webpack_require__(/*! ./app.js */ \"./src/js/canvas/app.js\");\n\nvar _app2 = _interopRequireDefault(_app);\n\nvar _background = __webpack_require__(/*! ./background.js */ \"./src/js/canvas/background.js\");\n\nvar _background2 = _interopRequireDefault(_background);\n\nvar _logo = __webpack_require__(/*! ./logo.js */ \"./src/js/canvas/logo.js\");\n\nvar _logo2 = _interopRequireDefault(_logo);\n\nvar _displace = __webpack_require__(/*! ./displace.js */ \"./src/js/canvas/displace.js\");\n\nvar _displace2 = _interopRequireDefault(_displace);\n\nvar _playbutton = __webpack_require__(/*! ./playbutton.js */ \"./src/js/canvas/playbutton.js\");\n\nvar _playbutton2 = _interopRequireDefault(_playbutton);\n\nvar _dom = __webpack_require__(/*! ../dom.js */ \"./src/js/dom.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n//or\nvar loader = new PIXI.loaders.Loader(); // you can also create your own if you want\n\n\n// Chainable `add` to enqueue a resource\nloader.add('bg', 'img/ACTD-bg.jpg').add('displacer', 'img/sg-worms-bg.jpg').add('logo', 'img/Treef_logo-white.png').add('logo_bg', 'img/fade.jpg').add('playbutton_bg', 'img/creature.jpg').add('playbutton', 'img/play3.png').add('playbutton_shadow', 'img/play3-shadow.png');\n\nloader.load(function (loader, resources) {\n  // resources is an object where the key is the name of the resource loaded and the value is the resource object.\n  // They have a couple default properties:\n  // - `url`: The URL that the resource was loaded from\n  // - `error`: The error that happened when trying to load (if any)\n  // - `data`: The raw data that was loaded\n  // also may contain other properties based on the middleware that runs.\n\n  var bigStage = new PIXI.Container();\n  _app2.default.stage.addChild(bigStage);\n\n  var background = (0, _background2.default)();\n  bigStage.addChild(background);\n\n  var playbutton = (0, _playbutton2.default)();\n  bigStage.addChild(playbutton);\n  playbutton.anchor.set(0.5);\n\n  var logo = (0, _logo2.default)();\n  bigStage.addChild(logo);\n\n  var displaceTex = PIXI.Texture.fromImage('img/sg-worms-bg.jpg');\n  (0, _displace2.default)({\n    texture: displaceTex,\n    displacedElement: background,\n    container: _app2.default.stage\n  });\n\n  // RESIZE\n  function reSizeIt() {\n    // Get new size\n    var size = (0, _helpers.getWindowSize)();\n    var w = size.width;\n    var h = size.height;\n\n    // Scale renderer\n    _app2.default.renderer.view.style.width = w + \"px\";\n    _app2.default.renderer.view.style.height = h + \"px\";\n    _app2.default.renderer.resize(w, h);\n  }\n\n  window.addEventListener(\"resize\", function (e) {\n    reSizeIt();\n  });\n\n  (0, _dom.deCloak)();\n});\n\n//# sourceURL=webpack:///./src/js/canvas/scene.js?");
+
+/***/ }),
+
+/***/ "./src/js/dom.js":
+/*!***********************!*\
+  !*** ./src/js/dom.js ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar vidContainer = void 0;\nvar iframe = void 0;\nvar player = void 0;\nvar mainContainer = void 0;\n\nvar hideVideo = function hideVideo() {\n  vidContainer.hide();\n  TweenMax.set(iframe, { scale: 0 });\n  vidContainer.removeClass('playing');\n  player.pause();\n};\n\nvar launchVideo = function launchVideo() {\n  vidContainer.show();\n  setTimeout(function () {\n    vidContainer.addClass('playing');\n  }, 100);\n  TweenMax.to(iframe, 4, { scale: 1,\n    onComplete: function onComplete() {}\n  });\n  player.play();\n};\n\nvar deCloak = function deCloak() {\n  TweenMax.to($('.cloak'), 1.2, { alpha: 0, onComplete: function onComplete() {\n      $('.cloak').remove();\n    } });\n};\n\n$('document').ready(function () {\n  vidContainer = $('.video-container');\n  iframe = document.querySelector('iframe');\n  player = new Vimeo.Player(iframe);\n  mainContainer = $('.main-container');\n\n  hideVideo();\n\n  // player.on('pause', function() {\n  //   hideVideo();\n  //   console.log('pause');\n  // });\n\n  player.on('ended', function () {\n    hideVideo();\n  });\n\n  $('.play-button').click(function (e) {\n    e.preventDefault();\n    launchVideo();\n  });\n  $('.video-close').click(function (e) {\n    e.preventDefault();\n    hideVideo();\n  });\n  $('.info-button').click(function (e) {\n    e.preventDefault();\n    mainContainer.addClass('info-screen');\n  });\n  $('.close-info').click(function (e) {\n    e.preventDefault();\n    mainContainer.removeClass('info-screen');\n  });\n});\n\n$(document).keyup(function (e) {\n  if (e.keyCode == 27) {\n    // escape key maps to keycode `27`\n    hideVideo();\n  }\n});\n\nexports.hideVideo = hideVideo;\nexports.launchVideo = launchVideo;\nexports.deCloak = deCloak;\n\n//# sourceURL=webpack:///./src/js/dom.js?");
+
+/***/ })
+
+/******/ });
