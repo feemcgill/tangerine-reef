@@ -16,12 +16,18 @@
   overflow: hidden;
   margin: 0 auto;
 }
-/* line 20, ../../src/_sass/_info.sass */
+/* line 17, ../../src/_sass/_info.sass */
 .tangerine-info .info-scroll {
   display: inline-block;
 }
+/* line 18, ../../src/_sass/_info.sass */
+.tangerine-info .info-scroll img {
+  max-width: 500px;
+  display: block;
+  margin: 0 auto;
+}
 
-/* line 29, ../../src/_sass/_info.sass */
+/* line 28, ../../src/_sass/_info.sass */
 .main-container.info-screen .tangerine-info .info-scroll {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
@@ -29,7 +35,7 @@
   animation-duration: 40s;
 }
 
-/* line 35, ../../src/_sass/_info.sass */
+/* line 34, ../../src/_sass/_info.sass */
 .album-info {
   position: absolute;
   bottom: 50%;
@@ -38,14 +44,14 @@
   cursor: pointer;
   display: none;
 }
-/* line 42, ../../src/_sass/_info.sass */
+/* line 41, ../../src/_sass/_info.sass */
 .album-info .album-link {
   width: 200px;
   text-align: center;
   display: block;
   mix-blend-mode: multiply;
 }
-/* line 48, ../../src/_sass/_info.sass */
+/* line 47, ../../src/_sass/_info.sass */
 .album-info .album-link img {
   display: block;
   width: 100%;
