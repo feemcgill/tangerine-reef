@@ -52,20 +52,16 @@ loader.load((loader, resources) => {
 
 
   let displaceTex = PIXI.Texture.fromImage('img/sg-worms-bg.jpg');
-  // displacement({
-  //   texture: displaceTex,
-  //   displacedElement: background,
-  //   container: app.stage
-  // });
-
-  console.log('go');
-  bigStage.interactive = true;
-  bigStage.on('click', function(){
-    alert('git eem');
+  displacement({
+    texture: displaceTex,
+    displacedElement: background,
+    container: bigStage
   });
-  bigStage.on('tap', function(){
-    alert('g0t eem');
-  });  
+
+  bigStage.interactive = true;
+  bigStage.on('touchmove', function(){
+    alert('asdfasdf');
+  });
   // RESIZE
   function reSizeIt() {
     // Get new size

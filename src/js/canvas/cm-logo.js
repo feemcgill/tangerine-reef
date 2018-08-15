@@ -33,6 +33,7 @@ const theCmLogo = function(){
   logoSprite
       .on('mousemove', onPointerMove)
       .on('touchmove', onPointerMove)
+      .on('tap', showInfoScreen)
       .on('click', showInfoScreen);
   
   function onPointerMove(eventData) {
