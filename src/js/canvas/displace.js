@@ -43,8 +43,13 @@ export default (config) => {
   }  
 
   function resize(){
-    const bgSize = backgroundSize(app.renderer.width, app.renderer.height, config.texture.orig.width, config.texture.orig.height);
-    displacementSprite.scale.set(bgSize.scale);
+    if (config.texture.orig.width > app.renderer.width &&  config.texture.orig.height > app.renderer.height) {
+      // texture is bigger than the screen, don't scale
+      displacementSprite.scale.set(1);
+    } else {
+      const bgSize = backgroundSize(app.renderer.width, app.renderer.height, config.texture.orig.width, config.texture.orig.height);
+      displacementSprite.scale.set(bgSize.scale);
+    }
     displacementSprite.anchor.set(0.5);
     displacementSprite.x = app.renderer.width / 2;
     displacementSprite.y = app.renderer.height / 2;
