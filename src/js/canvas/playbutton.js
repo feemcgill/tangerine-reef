@@ -35,7 +35,7 @@ const thePlayButton = function(){
   playButton.scale.set(0.7);
 
   const creatureSprite = new PIXI.Sprite.fromImage('img/creature.jpg');
-  //creatureContainer.addChild(creatureSprite);
+  creatureContainer.addChild(creatureSprite);
   creatureSprite.anchor.set(0.5);
   creatureSprite.scale.set(0.8);
 
@@ -49,20 +49,12 @@ const thePlayButton = function(){
 
 
 
-  //creatureSprite.mask = playButton;
+  creatureSprite.mask = playButton;
 
   playButton.interactive = true;
   playButton.buttonMode = true;
   playButton.hitArea = new PIXI.Polygon([-140,-160, 190,0, -140,159]);
 
-  const gpx = new PIXI.Graphics();
-  playButton.addChild(gpx);
-  gpx.beginFill(0xff0000);
-  //gpx.drawRect(0, 0, 100, 100);
-  gpx.drawPolygon([-140,-160, 190,0, -140,159]);
-  gpx.endFill();
-  gpx.interactive = true;
-  gpx.buttonMode = true;
   playButton
       .on('mousemove', onPointerMove)
       .on('touchmove', onPointerMove)
