@@ -1,6 +1,6 @@
 import app from './app.js';
 import {debounce, getWindowSize, map} from './helpers.js';
-import {launchVideo} from '../dom.js';
+import {launchVideo, hideVideo} from '../dom.js';
 
 const thePlayButton = function(){
 
@@ -53,6 +53,15 @@ const thePlayButton = function(){
       .on('mouseover', scaleButtonUp)
       .on('mouseout', scaleButtonDown)
       //.on('tap', launchVideo)
+      .on('touchstart',  scaleButtonUp)
+      .on('touchend', function(){
+          scaleButtonDown();
+          launchVideo();
+      })
+      .on('touchendoutside', function(){
+          scaleButtonDown();
+          hideVideo();
+      })
       .on('click', launchVideo);
   
   function scaleButtonUp(){

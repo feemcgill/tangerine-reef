@@ -78,7 +78,7 @@ loader.load((loader, resources) => {
   function sizeAndPosition(){
     if (app.renderer.width < 700) {
       // small
-      logo.x = -80;
+      logo.x = -60;
       logo.scale.set(0.5);
 
       cmLogo.x = app.renderer.width - 140;
