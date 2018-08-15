@@ -59,9 +59,9 @@ loader.load((loader, resources) => {
   });
 
   bigStage.interactive = true;
-  bigStage.on('touchmove', function(){
-    alert('asdfasdf');
-  });
+  // bigStage.on('touchmove', function(){
+  //   alert('asdfasdf');
+  // });
   // RESIZE
   function reSizeIt() {
     // Get new size

@@ -30,8 +30,8 @@ export default (config) => {
   
   function onPointerMove(eventData) {
       //displacementSprite.position.set(eventData.data.global.x - 25, eventData.data.global.y);
-      var mx = eventData.data.originalEvent.clientX;
-      var my = eventData.data.originalEvent.clientY;
+      var mx = eventData.data.global.x;
+      var my = eventData.data.global.y;
 
       var moverX = map(mx, 0, app.renderer.width, 20, -20);
       var moverY = map(my, 0, app.renderer.height, 20, -20);
