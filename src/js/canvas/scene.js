@@ -41,7 +41,7 @@ loader.load((loader, resources) => {
   const playbutton = thePlayButton();
   bigStage.addChild(playbutton);
   playbutton.anchor.set(0.5);
-
+  
   const logo = theLogo();
   bigStage.addChild(logo);
 
