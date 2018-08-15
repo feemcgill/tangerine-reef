@@ -19,9 +19,8 @@ loader.add('bg', 'img/ACTR-bg.jpg')
   .add('logo_bg', 'img/fade.jpg')
   .add('playbutton_bg', 'img/creature.jpg')
   .add('playbutton', 'img/play3.png')
-  .add('cm_logo_bg', 'img/cm-logo-bg.jpg')
+  .add('cm_logo_bg', 'img/cm-logo-bg2.jpg')
   .add('cm_logo', 'img/cm-logo.png')
-  
   .add('playbutton_shadow', 'img/play3-shadow.png');
 
 

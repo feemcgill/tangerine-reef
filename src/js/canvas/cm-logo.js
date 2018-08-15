@@ -14,16 +14,9 @@ const theCmLogo = function(){
 
   const logoSprite = new PIXI.Sprite.fromImage('img/cm-logo.png');
   logoSprite.anchor.set(0.5);
-  backgroundContainer.addChild(logoSprite);
   logoSprite.scale.set(0.5);
+  backgroundContainer.addChild(logoSprite);
 
-  logoSprite.x = 0;
-  logoSprite.y = 0;
-
-  setTimeout(() => {
-    logoSprite.x = backgroundSprite.width / 2;
-    logoSprite.y = backgroundSprite.height / 2;    
-  }, 300);
   backgroundSprite.mask = logoSprite;
 
 
@@ -50,16 +43,20 @@ const theCmLogo = function(){
 
   }  
 
-
+  app.ticker.add(function(delta) {
+    logoSprite.rotation += 0.0005 * delta;
+  });
 
   // RESIZE
-  function reSizeIt() {
-    // const size = getWindowSize();
-    // const w = size.width;
+  function sizeIt() {
+    console.log('pos');
+    logoSprite.x = backgroundSprite.width / 2;
+    logoSprite.y = backgroundSprite.height / 2;    
   }
+  sizeIt();
 
   window.addEventListener("resize",debounce(function(e){
-    //reSizeIt();
+    sizeIt();
   }));  
     
   return backgroundContainer;
