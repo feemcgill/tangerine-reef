@@ -67,8 +67,8 @@ const thePlayButton = function(){
   }  
 
   function onPointerMove(eventData) {
-      var mx = eventData.data.originalEvent.clientX;
-      var my = eventData.data.originalEvent.clientY;
+      var mx = eventData.data.global.x;
+      var my = eventData.data.global.y;
 
       var moverX = map(mx, 0, app.renderer.width, 56, -56);
       var moverY = map(my, 0, app.renderer.height, 56, -56);

@@ -38,8 +38,8 @@ const theCmLogo = function(){
   
   function onPointerMove(eventData) {
       //logoSprite.position.set(eventData.data.global.x - 25, eventData.data.global.y);
-      var mx = eventData.data.originalEvent.clientX;
-      var my = eventData.data.originalEvent.clientY;
+      var mx = eventData.data.global.x;
+      var my = eventData.data.global.y;
 
       var moverX = map(mx, 0, app.renderer.width, -60, 60);
       var moverY = map(my, 0, app.renderer.height, -30, 30);
