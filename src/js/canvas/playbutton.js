@@ -52,6 +52,7 @@ const thePlayButton = function(){
       .on('touchmove', onPointerMove)
       .on('mouseover', scaleButtonUp)
       .on('mouseout', scaleButtonDown)
+      .on('tap', launchVideo)
       .on('click', launchVideo);
   
   function scaleButtonUp(){

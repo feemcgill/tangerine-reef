@@ -271,7 +271,7 @@ a {
   width: 100vw;
   position: absolute;
   background-image: url(../img/cm-logo.png);
-  background-size: contain;
+  background-size: 300px auto;
   background-repeat: no-repeat;
   background-position: center center;
   opacity: 0.08;

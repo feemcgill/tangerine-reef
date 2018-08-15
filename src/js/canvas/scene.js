@@ -52,12 +52,20 @@ loader.load((loader, resources) => {
 
 
   let displaceTex = PIXI.Texture.fromImage('img/sg-worms-bg.jpg');
-  displacement({
-    texture: displaceTex,
-    displacedElement: background,
-    container: app.stage
-  });
+  // displacement({
+  //   texture: displaceTex,
+  //   displacedElement: background,
+  //   container: app.stage
+  // });
 
+  console.log('go');
+  bigStage.interactive = true;
+  bigStage.on('click', function(){
+    alert('git eem');
+  });
+  bigStage.on('tap', function(){
+    alert('g0t eem');
+  });  
   // RESIZE
   function reSizeIt() {
     // Get new size
@@ -83,7 +91,7 @@ loader.load((loader, resources) => {
       // large
 
       logo.x = 0;
-      logo.scale.set(1);
+      logo.scale.set(0.7);
 
       cmLogo.x = app.renderer.width - 500;
       cmLogo.scale.set(0.8);
