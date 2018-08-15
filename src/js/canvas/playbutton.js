@@ -1,6 +1,6 @@
 import app from './app.js';
 import {debounce, getWindowSize, map} from './helpers.js';
-import {launchVideo, hideVideo} from '../dom.js';
+import {launchVideo, hideVideo, updatePushState} from '../dom.js';
 
 const thePlayButton = function(){
 
@@ -39,7 +39,13 @@ const thePlayButton = function(){
   creatureSprite.anchor.set(0.5);
   creatureSprite.scale.set(0.8);
 
-
+  function buttonClick() {
+    launchVideo();
+    updatePushState({
+      screen: 'video',
+      function: 'play button'
+    })
+  }
 
 
 
@@ -56,13 +62,13 @@ const thePlayButton = function(){
       .on('touchstart',  scaleButtonUp)
       .on('touchend', function(){
           scaleButtonDown();
-          launchVideo();
+          buttonClick();
       })
       .on('touchendoutside', function(){
           scaleButtonDown();
           hideVideo();
       })
-      .on('click', launchVideo);
+      .on('click', buttonClick);
   
   function scaleButtonUp(){
     TweenMax.to(playButton.scale, 5, {x: 0.9, y:0.9});

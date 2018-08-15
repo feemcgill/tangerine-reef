@@ -6,7 +6,7 @@ let mainContainer;
 
 const hideVideo = function() {
   vidContainer.hide();
-  TweenMax.set(iframe, {scale: 0});
+  TweenMax.to(iframe, 0.2, {scale: 0});
   vidContainer.removeClass('playing');
   player.pause();
 }
@@ -23,15 +23,49 @@ const launchVideo = function() {
   player.play();
 }
 
+const showInfoScreen = function(){
+  mainContainer.addClass('info-screen');
+}
+
+const closeInfoScreen = function() {
+  mainContainer.removeClass('info-screen');
+}
+
+const updatePushState = function(data) {
+  history.pushState(data ,null, null);  
+}
+
+window.onpopstate = function(event) {
+  console.log("location: " + document.location + ", state: " + JSON.stringify(event));
+  console.log(event.state);
+  if (event.state) {
+    if (event.state.screen == 'home') {
+      if (vidContainer.hasClass('playing')) {
+        hideVideo()
+      }
+      if (mainContainer.hasClass('info-screen')){
+        closeInfoScreen();
+      }
+    }
+    if (event.state.screen == 'video') {
+      launchVideo();
+    }   
+    if (event.state.screen == 'info') {
+      showInfoScreen();
+    }       
+  }
+
+};
+
+
+
 const deCloak = function() {
   TweenMax.to($('.cloak'), 1.2, {alpha: 0, onComplete: function(){
     $('.cloak').remove();
   }});
 }
 
-const showInfoScreen = function(){
-  mainContainer.addClass('info-screen');  
-}
+
 
 $('document').ready(function(){
   vidContainer = $('.video-container');
@@ -41,7 +75,16 @@ $('document').ready(function(){
 
 
 
-  hideVideo();
+  vidContainer.hide();
+  TweenMax.set(iframe, {scale: 0});
+
+
+  
+  history.replaceState( {
+    screen: 'home',
+    function: 'init'
+  } ,null, null);
+  //hideVideo();
 
   // player.on('pause', function() {
   //   hideVideo();
@@ -52,20 +95,24 @@ $('document').ready(function(){
     hideVideo();
   });
 
-  $('.play-button').click(function(e){
-    e.preventDefault();
-    launchVideo();
-  });
+
   $('.video-close').click(function(e){
     e.preventDefault();
     hideVideo();
-  });
-  $('.info-button').click(function(e){
-    e.preventDefault();
+    const pushData = {
+      screen: 'home',
+      function: 'video close'
+    }
+    updatePushState(pushData);      
   });
   $('.close-info').click(function(e){
     e.preventDefault();
-    mainContainer.removeClass('info-screen');
+    closeInfoScreen();
+    const pushData = {
+      screen: 'home',
+      function: 'info close'
+    }
+    updatePushState(pushData);    
   });  
 });
 
@@ -75,4 +122,4 @@ $(document).keyup(function(e) {
  }
 });
 
-export {hideVideo, launchVideo, deCloak, showInfoScreen};
+export {hideVideo, launchVideo, deCloak, showInfoScreen, updatePushState};

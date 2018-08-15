@@ -1,6 +1,6 @@
 import app from './app.js';
 import {debounce, getWindowSize, map} from './helpers.js';
-import {showInfoScreen} from '../dom.js';
+import {showInfoScreen, updatePushState} from '../dom.js';
 
 
 const theCmLogo = function(){
@@ -11,6 +11,13 @@ const theCmLogo = function(){
   // backgroundSprite.x = app.renderer.width / 2;
   //backgroundSprite.y = app.renderer.height / 5;
 
+  function logoClick() {
+    showInfoScreen();
+    updatePushState({
+      screen: 'info',
+      function: 'click info button'
+    })
+  }
 
   const logoSprite = new PIXI.Sprite.fromImage('img/cm-logo.png');
   logoSprite.anchor.set(0.5);
@@ -26,8 +33,8 @@ const theCmLogo = function(){
   logoSprite
       .on('mousemove', onPointerMove)
       .on('touchmove', onPointerMove)
-      .on('tap', showInfoScreen)
-      .on('click', showInfoScreen);
+      .on('tap', logoClick)
+      .on('click', logoClick);
   
   function onPointerMove(eventData) {
       //logoSprite.position.set(eventData.data.global.x - 25, eventData.data.global.y);
