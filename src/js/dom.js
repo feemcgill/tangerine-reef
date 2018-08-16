@@ -1,3 +1,5 @@
+import {debounce, getWindowSize} from './canvas/helpers.js'
+
 let vidContainer;
 let iframe;
 let player;
@@ -127,5 +129,13 @@ $(document).keyup(function(e) {
      hideVideo();
  }
 });
+
+window.addEventListener("resize",debounce(function(e){
+  const w = getWindowSize();
+  console.log(w);
+  if (w.width > 700) {
+    $('.tangerine-links').show();
+  }
+}));  
 
 export {hideVideo, launchVideo, deCloak, showInfoScreen, updatePushState};
