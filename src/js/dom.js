@@ -38,8 +38,6 @@ const updatePushState = function(data) {
 }
 
 window.onpopstate = function(event) {
-  console.log("location: " + document.location + ", state: " + JSON.stringify(event));
-  console.log(event.state);
   if (event.state) {
     if (event.state.screen == 'home') {
       if (vidContainer.hasClass('playing')) {
@@ -58,7 +56,6 @@ window.onpopstate = function(event) {
   }
 
 };
-
 
 
 const deCloak = function() {
@@ -132,7 +129,6 @@ $(document).keyup(function(e) {
 
 window.addEventListener("resize",debounce(function(e){
   const w = getWindowSize();
-  console.log(w);
   if (w.width > 700) {
     $('.tangerine-links').show();
   }

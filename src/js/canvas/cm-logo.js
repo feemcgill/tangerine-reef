@@ -7,9 +7,6 @@ const theCmLogo = function(){
   const backgroundContainer = new PIXI.Container();
   const backgroundSprite = new PIXI.Sprite.fromImage('img/cm-logo-bg2.jpg');
   backgroundContainer.addChild(backgroundSprite);
-  //backgroundSprite.anchor.set(0.5);
-  // backgroundSprite.x = app.renderer.width / 2;
-  //backgroundSprite.y = app.renderer.height / 5;
 
   function logoClick() {
     showInfoScreen();
@@ -56,7 +53,6 @@ const theCmLogo = function(){
 
   // RESIZE
   function sizeIt() {
-    console.log('pos');
     logoSprite.x = backgroundSprite.width / 2;
     logoSprite.y = backgroundSprite.height / 2;    
   }
