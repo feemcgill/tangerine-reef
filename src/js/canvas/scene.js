@@ -35,14 +35,16 @@ loader.load((loader, resources) => {
   const playbutton = thePlayButton();
   bigStage.addChild(playbutton);
   playbutton.anchor.set(0.5);
-  
+  playbutton.buttonmode = true;
+
   const logo = theLogo();
   bigStage.addChild(logo);
 
 
   const cmLogo = theCmLogo();
   bigStage.addChild(cmLogo);
-
+  cmLogo.interactive = true;
+  cmLogo.buttonmode = true;
 
   let displaceTex = PIXI.Texture.fromImage('img/sg-worms-bg.jpg');
   displacement({

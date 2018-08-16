@@ -27,6 +27,9 @@ const theCmLogo = function(){
 
   logoSprite.interactive = true;
   logoSprite.buttonmode = true;
+  //logoSprite.hitArea = new PIXI.Polygon([-140,-160, 190,0, -140,159]);
+  logoSprite.cursor = 'pointer';
+
   logoSprite
       .on('mousemove', onPointerMove)
       .on('touchmove', onPointerMove)
