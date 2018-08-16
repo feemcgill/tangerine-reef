@@ -25,12 +25,6 @@ loader.add('bg', 'img/ACTR-bg.jpg')
 
 
 loader.load((loader, resources) => {
-    // resources is an object where the key is the name of the resource loaded and the value is the resource object.
-    // They have a couple default properties:
-    // - `url`: The URL that the resource was loaded from
-    // - `error`: The error that happened when trying to load (if any)
-    // - `data`: The raw data that was loaded
-    // also may contain other properties based on the middleware that runs.
 
   const bigStage = new PIXI.Container();
   app.stage.addChild(bigStage);
@@ -58,9 +52,8 @@ loader.load((loader, resources) => {
   });
 
   bigStage.interactive = true;
-  // bigStage.on('touchmove', function(){
-  //   alert('asdfasdf');
-  // });
+
+  
   // RESIZE
   function reSizeIt() {
     // Get new size
@@ -84,12 +77,14 @@ loader.load((loader, resources) => {
       cmLogo.scale.set(0.3);
     } else {
       // large
-
       logo.x = 0;
       logo.scale.set(0.7);
 
       cmLogo.x = app.renderer.width - 500;
       cmLogo.scale.set(0.8);
+    }
+    if(app.renderer.width > 700 && app.renderer.width < 1200){ 
+      cmLogo.x = app.renderer.width - 350;
     }
   }
   sizeAndPosition();
@@ -102,6 +97,5 @@ loader.load((loader, resources) => {
     sizeAndPosition();
   }));  
     
-
   deCloak();
 });

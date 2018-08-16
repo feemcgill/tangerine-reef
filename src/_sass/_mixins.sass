@@ -12,6 +12,10 @@ $break: 700px
   @media (min-width: 1400px)
     @content
 
+=below($width)
+  @media (max-width: $width)
+    @content
+    
 =full-bg
   background-size: cover
   background-position: center

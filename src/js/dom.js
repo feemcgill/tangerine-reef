@@ -113,10 +113,13 @@ $('document').ready(function(){
     }
     updatePushState(pushData);    
   });
-  $('.mobile-links-open').click(function(){
+  $('.mobile-links-open').click(function(e){
+    e.preventDefault();
+
     $('.tangerine-links').show();
   });
-  $('.mobile-links-close').click(function(){
+  $('.mobile-links-close').click(function(e){
+    e.preventDefault();
     $('.tangerine-links').hide();
   });
 });
